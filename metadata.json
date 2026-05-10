@@ -1,0 +1,5 @@
+{
+  "name": "Ecommerce",
+  "description": "A clean, minimalist React ecommerce application featuring a high-fidelity replica of the Envazzy navbar style with integrated product search and user account controls.",
+  "requestFramePermissions": []
+}

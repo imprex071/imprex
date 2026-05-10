@@ -1,0 +1,81 @@
+{
+  "entities": {
+    "CheckoutConfig": {
+      "title": "Checkout Configuration",
+      "description": "Configuration for the checkout page appearance",
+      "type": "object",
+      "properties": {
+        "bannerUrl": { "type": "string", "description": "URL of the top banner image" },
+        "videoUrl": { "type": "string", "description": "URL of the top banner video (MP4)" }
+      }
+    },
+    "Banner": {
+      "title": "Home Carousel Banner",
+      "description": "A banner for the home page carousel",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "image": { "type": "string" },
+        "link": { "type": "string" }
+      }
+    },
+    "Product": {
+      "title": "Product",
+      "description": "A product for sale",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "category": { "type": "string" },
+        "image": { "type": "string" },
+        "description": { "type": "string" },
+        "isFlashOffer": { "type": "boolean" },
+        "isOutOfStock": { "type": "boolean" }
+      }
+    },
+    "User": {
+      "title": "User Profile",
+      "description": "Public profile data for a user",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "bannerUrl": { "type": "string" },
+        "bio": { "type": "string" },
+        "followersCount": { "type": "number" },
+        "followingCount": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/users/{userId}/followers/{followerId}": {
+      "schema": { "type": "object", "properties": { "followedAt": { "type": "string", "format": "date-time" } } },
+      "description": "Subcollection for user followers"
+    },
+    "/users/{userId}/following/{followedUserId}": {
+      "schema": { "type": "object", "properties": { "followedAt": { "type": "string", "format": "date-time" } } },
+      "description": "Subcollection for users followed by this user"
+    },
+    "/config/checkout": {
+      "schema": "CheckoutConfig",
+      "description": "Global checkout configuration"
+    },
+    "/banners": {
+      "schema": "Banner",
+      "description": "Collection of carousel banners"
+    },
+    "/products": {
+      "schema": "Product",
+      "description": "Collection of products"
+    },
+    "/settings/logo": {
+      "schema": { "type": "object", "properties": { "url": { "type": "string" }, "size": { "type": "number" }, "name": { "type": "string" } } },
+      "description": "Global logo and store name settings"
+    }
+  }
+}
